@@ -1,24 +1,21 @@
 button {
-  background-color: white;
-  color: rgb(56, 56, 56);
+  background-color: #646cff;
+  color: white;
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.2s, transform 0.2s;
   border-radius: 0.5rem;
   border: 0 solid transparent;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-weight: 300;
-  font-size: 1.5rem;
+  font-size: .8rem;
+  width: 100%;
+  margin: 1rem 0;
 }
 
 button:hover {
-  border: 1px solid white;
-  background-color: #646cff;
-  color: white;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 1px auto #646cff;
+  border: 1px solid #646cff;
+  background-color: white;
+  color: #646cff;
 }
