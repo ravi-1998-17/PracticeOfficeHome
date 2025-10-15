@@ -3,45 +3,47 @@ import "./App.css";
 import Buttons from "./components/UI/Buttons";
 
 function App() {
-  const [data, setData] = useState({ email: "", password: "" });
+  const [data, setData] = useState(() => {
+    const savedText = localStorage.getItem('savedText');
+    return savedText ? JSON.parse(savedText) : '';
+  });
+
+  const [getData, setGetData] = useState(() => {
+    const getSavedText = localStorage.getItem('getSavedText');
+    return getSavedText ? JSON.parse(getSavedText) : '';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('savedText', JSON.stringify(data));
+  }, [data]);
+
+  useEffect(() => {
+    localStorage.setItem('getSavedText', JSON.stringify(data));
+  }, [getData]);
 
   const changeHandler = (e) => {
-    setData((prev) => {
-      return {...prev, [e.target.name]: e.target.value}
-    });
+    setData(e.target.value);
   };
+  
+  const submitText = () => {
+    setGetData((prev) => {
+      return [data, ...prev]
+    })
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Email: ", data.email);
-    console.log("Password: ", data.password);
-    setData({ email: "", password: "" });
-  };
 
   return (
     <>
+      <p>{getData}</p>
+
       <div className="container">
-        <form className="card" onSubmit={handleSubmit}>
+        <div className="card" >
           <div className="input-box">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={data.email}
-              onChange={changeHandler}
-            />
+            <label>Type here:</label>
+            <textarea value={data} onChange={changeHandler} />
           </div>
-          <div className="input-box">
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              name="password"
-              value={data.password}
-              onChange={changeHandler}
-            />
-          </div>
-          <Buttons>SUBMIT</Buttons>
-        </form>
+          <Buttons onClick={submitText}>SUBMIT</Buttons>
+        </div>
       </div>
     </>
   );
