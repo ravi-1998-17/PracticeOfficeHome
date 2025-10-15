@@ -1,0 +1,24 @@
+button {
+  background-color: white;
+  color: rgb(56, 56, 56);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+  border-radius: 0.5rem;
+  border: 0 solid transparent;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+button:hover {
+  border: 1px solid white;
+  background-color: #646cff;
+  color: white;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 1px auto #646cff;
+}
