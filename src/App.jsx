@@ -1,50 +1,40 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import Buttons from "./components/UI/Buttons";
+import Form from "./components/Layout/Form";
+import Card from "./components/UI/Card";
+import FormData from "./components/Layout/FormData";
 
 function App() {
-  const [data, setData] = useState(() => {
-    const savedText = localStorage.getItem('savedText');
-    return savedText ? JSON.parse(savedText) : '';
-  });
+  const [customer, setCustomer] = useState([
+    { name: "Ravi Suthar", qty: "2", price: "299", id: 1 },
+    { name: "Kartik Jangid", qty: "5", price: "499", id: 2 },
+  ]);
 
-  const [getData, setGetData] = useState(() => {
-    const getSavedText = localStorage.getItem('getSavedText');
-    return getSavedText ? JSON.parse(getSavedText) : '';
-  });
-
-  useEffect(() => {
-    localStorage.setItem('savedText', JSON.stringify(data));
-  }, [data]);
-
-  useEffect(() => {
-    localStorage.setItem('getSavedText', JSON.stringify(data));
-  }, [getData]);
-
-  const changeHandler = (e) => {
-    setData(e.target.value);
+  const addNewOrder = (data) => {
+    console.log(data);
   };
-  
-  const submitText = () => {
-    setGetData((prev) => {
-      return [data, ...prev]
-    })
-  }
-
 
   return (
     <>
-      <p>{getData}</p>
-
       <div className="container">
-        <div className="card" >
-          <div className="input-box">
-            <label>Type here:</label>
-            <textarea value={data} onChange={changeHandler} />
-          </div>
-          <Buttons onClick={submitText}>SUBMIT</Buttons>
+        <div className="child-container">
+          <Form />
+          <main>
+            <Card>
+              {customer.map((customer) => {
+                return (
+                  <FormData
+                    customer={customer}
+                    key={customer.id}
+                    addNewOrder={addNewOrder}
+                  />
+                );
+              })}
+            </Card>
+          </main>
         </div>
       </div>
+      <div></div>
     </>
   );
 }

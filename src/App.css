@@ -6,38 +6,14 @@ body {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-.container {
-  height: 100vh;
+.container{
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 500px;
-
-  background-color: white;
-  padding: 1rem 1rem;
-
-  border: 1px solid #646cff;
-  border-radius: 1rem;
+.child-container{
+  width: 1250px;
 }
 
-.input-box {
-  margin-bottom: 1rem;
-}
 
-textarea {
-  width: 100%;
-  margin-top: 1rem;
-  border: none;
-  outline: none;
-  resize: none;
-  line-height: none;
-  border-bottom: 1px solid #646cff;
-}
 
-textarea[:nth-of-type]
