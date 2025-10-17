@@ -5,20 +5,32 @@ import Card from "./components/UI/Card";
 import FormData from "./components/Layout/FormData";
 
 function App() {
-  const [customer, setCustomer] = useState([
-    { name: "Ravi Suthar", qty: "2", price: "299", id: 1 },
-    { name: "Kartik Jangid", qty: "5", price: "499", id: 2 },
-  ]);
+  const [customer, setCustomer] = useState([]);
 
   const addNewOrder = (data) => {
-    console.log(data);
+    console.log("New Order:", data);
+    setCustomer((prev) => {
+      const newCustomer = {
+        ...data,
+        id: prev.length ? prev[prev.length - 1].id + 1 : 1,
+      };
+      return [...prev, newCustomer];
+    });
+  };
+
+  const updateQty = (id, newQty) => {
+    setCustomer((prev) =>
+      prev.map((item) => {
+        return item.id === id ? { ...item, qty: newQty } : item;
+      })
+    );
   };
 
   return (
     <>
       <div className="container">
         <div className="child-container">
-          <Form />
+          <Form addNewOrder={addNewOrder} />
           <main>
             <Card>
               {customer.map((customer) => {
@@ -26,7 +38,7 @@ function App() {
                   <FormData
                     customer={customer}
                     key={customer.id}
-                    addNewOrder={addNewOrder}
+                    updateQty={updateQty}
                   />
                 );
               })}
