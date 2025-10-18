@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Form from "./components/Layout/Form";
 import Card from "./components/UI/Card";
 import FormData from "./components/Layout/FormData";
+import Buttons from "./components/UI/Buttons";
 
 function App() {
   const [customer, setCustomer] = useState([]);
@@ -26,11 +27,29 @@ function App() {
     );
   };
 
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Component Rendered");
+  })
+
+  const refCoount = useRef(0);
+
+  const incCount = () => {
+    setCount(count + 1);
+  };
+
+  refCoount.current += 1;
+  console.log(refCoount);
+
   return (
     <>
       <div className="container">
         <div className="child-container">
-          <Form addNewOrder={addNewOrder} />
+          <header>
+            <Form addNewOrder={addNewOrder} />
+          </header>
+
           <main>
             <Card>
               {customer.map((customer) => {
@@ -44,9 +63,13 @@ function App() {
               })}
             </Card>
           </main>
+
+          <section>
+            <h1>{count}</h1>
+            <Buttons onClick={incCount}>Add</Buttons>
+          </section>
         </div>
       </div>
-      <div></div>
     </>
   );
 }

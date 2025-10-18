@@ -7,6 +7,7 @@ const Form = ({ addNewOrder }) => {
   const [data, setData] = useState({ name: "", qty: "1", price: "" });
 
   const onChangeHandler = (e) => {
+    console.log(e.target.value)
     setData((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });

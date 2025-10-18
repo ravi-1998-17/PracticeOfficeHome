@@ -6,14 +6,25 @@ body {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-.container{
-  display: flex;
+.container {
+  background-color: antiquewhite;
   justify-content: center;
+  display: flex;
 }
 
-.child-container{
+.child-container {
   width: 1250px;
 }
 
+input {
+  cursor: pointer;
+  margin: 0 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: .5rem;
+}
 
-
+input:focus,
+input:active {
+  color: red;
+}

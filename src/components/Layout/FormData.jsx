@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./FormData.css";
 
-const FormData = ({ customer, updateQty  }) => {
+const FormData = ({ customer, updateQty }) => {
   const totalCost = customer.qty * +customer.price;
 
   const incQtyFunc = () => {
@@ -21,9 +21,13 @@ const FormData = ({ customer, updateQty  }) => {
           Product: <span>{customer.name}</span> | Price:{" "}
           <span>{customer.price}</span> | Qty:{" "}
           <span>
-            <button className="qty-btn" onClick={decQtyFunc}>-</button>
+            <button className="qty-btn" onClick={decQtyFunc}>
+              -
+            </button>
             {customer.qty}
-            <button className="qty-btn" onClick={incQtyFunc}>+</button>
+            <button className="qty-btn" onClick={incQtyFunc}>
+              +
+            </button>
           </span>
         </p>
         <p>
