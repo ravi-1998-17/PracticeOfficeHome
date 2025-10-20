@@ -1,27 +1,19 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Buttons from "./UI/Buttons";
 import Child from "./Child";
 
 const Practice = () => {
-  const [number, setNumber] = useState(0);
-  const [theme, setTheme] = useState("light");
-
-  const doubleNumber = useMemo(() => {
-    console.log("Calculating...");
-    return number * 2;
-  }, [number]);
+  const inputRef = useRef();
 
   return (
     <div>
-      <input
-        type="number"
-        value={number}
-        onChange={(e) => setNumber(parseInt(e.target.value))}
-      />
-      <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
-        Toggle Theme
-      </button>
-      <p>Double: {doubleNumber}</p>
+      <Child ref={inputRef} />
+      <Buttons onClick={() => inputRef.current.focusInput()}>
+        Focus Input
+      </Buttons>
+      <Buttons onClick={() => inputRef.current.clearInput()}>
+        Clear Input
+      </Buttons>
     </div>
   );
 };
