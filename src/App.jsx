@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import "./App.css";
 import Form from "./components/Layout/Form";
 import Card from "./components/UI/Card";
 import FormData from "./components/Layout/FormData";
 import Buttons from "./components/UI/Buttons";
+import Practice from "./components/Practice";
 
 function App() {
   const [customer, setCustomer] = useState([]);
@@ -27,20 +28,7 @@ function App() {
     );
   };
 
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    console.log("Component Rendered");
-  })
-
-  const refCoount = useRef(0);
-
-  const incCount = () => {
-    setCount(count + 1);
-  };
-
-  refCoount.current += 1;
-  console.log(refCoount);
+  useEffect(() => console.log("Component Rendering..."));
 
   return (
     <>
@@ -65,8 +53,7 @@ function App() {
           </main>
 
           <section>
-            <h1>{count}</h1>
-            <Buttons onClick={incCount}>Add</Buttons>
+            <Practice />
           </section>
         </div>
       </div>

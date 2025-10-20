@@ -7,7 +7,7 @@ const Form = ({ addNewOrder }) => {
   const [data, setData] = useState({ name: "", qty: "1", price: "" });
 
   const onChangeHandler = (e) => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     setData((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
@@ -22,6 +22,8 @@ const Form = ({ addNewOrder }) => {
   return (
     <>
       <form onSubmit={submitHandler}>
+        <h1>Hello</h1>
+
         <div className="form-card">
           <label>Product: </label>
           <Input
